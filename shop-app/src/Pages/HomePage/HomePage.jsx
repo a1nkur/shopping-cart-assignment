@@ -1,9 +1,42 @@
+import styled from "styled-components";
+import Banner from "../../Components/Banner/Banner";
+import HomePageCard from "../../Components/HomePageCard/HomePageCard";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 const HomePage = () => {
+  const [cardData, setCardData] = useState(null);
+
+  useEffect(() => {
+    axios.get(`/server/categories/index.get.json`).then(data => {
+      setCardData(data.data);
+    });
+  }, []);
+
   return (
-    <div className="">
-      <h1>homepage</h1>
-    </div>
+    <Container>
+      <Banner />
+      {cardData?.length > 0 &&
+        cardData?.map((item, index) => (
+          <HomePageCard
+            index={index}
+            image={item?.imageUrl}
+            title={item?.name}
+            subTitle={item?.description}
+            key={item?.key}
+          />
+        ))}
+    </Container>
   );
 };
 
 export default HomePage;
+
+/* ---------------------------- STYLED COMPONENTS --------------------------- */
+
+const Container = styled.div`
+  min-height: 70vh;
+  max-width: 80vw;
+  padding: 0.5rem 0;
+  margin: 0 auto;
+`;

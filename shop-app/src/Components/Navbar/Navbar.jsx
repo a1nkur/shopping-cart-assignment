@@ -35,6 +35,8 @@ const Navbar = () => {
 
 export default Navbar;
 
+/* ---------------------------- STYLED COMPONENTS --------------------------- */
+
 const NavContainer = styled.nav`
   min-height: 15vh;
   border-bottom: 1px solid #ccc;
