@@ -7,18 +7,35 @@ import SigninPage from "./Pages/SigninPage/SigninPage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import ProductsPage from "./Pages/ProductsPage/ProductsPage";
 import Footer from "./Components/Footer/Footer";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [cardData, setCardData] = useState(null);
+  const [allProductsData, setAllProductsData] = useState(null);
+
+  useEffect(() => {
+    axios.get(`/server/categories/index.get.json`).then(data => {
+      setCardData(data.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`/server/products/index.get.json`).then(data => {
+      setAllProductsData(data.data);
+    });
+  }, []);
+
   return (
     <AppContainer>
       <GlobalStyle />
       <Navbar />
       <Switch>
         <Route path="/" exact>
-          <HomePage />
+          <HomePage cardData={cardData} />
         </Route>
-        <Route path="/products" exact>
-          <ProductsPage />
+        <Route path="/products/category/:id" exact>
+          <ProductsPage cardData={cardData} allProductsData={allProductsData} />
         </Route>
         <Route path="/signin" exact>
           <SigninPage />

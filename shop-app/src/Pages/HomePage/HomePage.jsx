@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import Banner from "../../Components/Banner/Banner";
 import HomePageCard from "../../Components/HomePageCard/HomePageCard";
-import { useState, useEffect } from "react";
-import axios from "axios";
+// import { useState, useEffect } from "react";
+// import axios from "axios";
 
-const HomePage = () => {
-  const [cardData, setCardData] = useState(null);
+const HomePage = ({ cardData }) => {
+  // const [cardData, setCardData] = useState(null);
 
-  useEffect(() => {
-    axios.get(`/server/categories/index.get.json`).then(data => {
-      setCardData(data.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`/server/categories/index.get.json`).then(data => {
+  //     setCardData(data.data);
+  //   });
+  // }, []);
 
   return (
     <Container>

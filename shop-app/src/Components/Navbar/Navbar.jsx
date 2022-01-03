@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="right__container">
           <div className="nav__links">
             <Link to="/"> Home</Link>
-            <Link to="/products"> Products</Link>
+            <Link to="/products/category/5b675e5e5936635728f9fc30"> Products</Link>
           </div>
           <div className="cart__box">
             <div className="box">
