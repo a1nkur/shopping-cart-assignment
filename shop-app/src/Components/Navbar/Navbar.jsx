@@ -84,18 +84,16 @@ const NavContainer = styled.nav`
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        border: 1px solid pink;
 
         .box {
           height: 100%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          border: 1px solid pink;
-          width: 25%;
 
           .links {
             display: flex;
+            gap: 1rem;
             justify-content: space-between;
           }
 
@@ -104,11 +102,12 @@ const NavContainer = styled.nav`
             width: 100%;
             display: flex;
             flex: 1;
+            justify-content: space-between;
 
             span {
               display: flex;
               flex-grow: 3;
-              justify-content: center;
+              justify-content: flex-end;
               align-items: center;
             }
 
