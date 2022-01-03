@@ -6,6 +6,7 @@ import HomePage from "./Pages/HomePage/HomePage";
 import SigninPage from "./Pages/SigninPage/SigninPage";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import ProductsPage from "./Pages/ProductsPage/ProductsPage";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         </Route>
         <Route path="*">{/* <RegisterPage /> */}</Route>
       </Switch>
+      <Footer />
     </AppContainer>
   );
 }
