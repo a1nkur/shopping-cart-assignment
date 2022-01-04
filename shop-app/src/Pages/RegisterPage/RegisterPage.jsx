@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const RegisterPage = () => {
+const RegisterPage = ({ registerInfo, setRegisterInfo, registerDataOnChange, isRegisterValid }) => {
   return (
     <Container>
       <div className="inner__container">
@@ -15,25 +15,37 @@ const RegisterPage = () => {
             <form>
               <div className="inner__container__right__firstName">
                 <label for="firstName">First Name</label>
-                <input id="firstName" type="text" placeholder="John" required />
+                <input id="firstName" type="text" placeholder="John" required onChange={registerDataOnChange} />
               </div>
               <div className="inner__container__right__lastName">
                 <label for="lastName">First Name</label>
-                <input id="lastName" type="text" placeholder="Doe" required />
+                <input id="lastName" type="text" placeholder="Doe" required onChange={registerDataOnChange} />
               </div>
               <div className="inner__container__right__email">
                 <label for="email"> Email</label>
-                <input id="email" type="email" placeholder="johndoe@xyz.com" required />
+                <input id="email" type="email" placeholder="johndoe@xyz.com" required onChange={registerDataOnChange} />
               </div>
               <div className="inner__container__right__password">
                 <label for="password"> Password </label>
-                <input id="password" type="password" placeholder="***********" required />
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="***********"
+                  required
+                  onChange={registerDataOnChange}
+                />
               </div>
               <div className="inner__container__right__cnfpassword">
-                <label for="cnf-password">Confirm Password </label>
-                <input id="cnf-password" type="password" placeholder="***********" required />
+                <label for="cnfPassword">Confirm Password </label>
+                <input
+                  id="cnfPassword"
+                  type="password"
+                  placeholder="***********"
+                  required
+                  onChange={registerDataOnChange}
+                />
               </div>
-              <button className="btn__login"> Login </button>
+              <RegisterButton disabled={!isRegisterValid}>Register</RegisterButton>
             </form>
           </div>
         </div>
@@ -128,4 +140,15 @@ const Container = styled.div`
       }
     }
   }
+`;
+
+const RegisterButton = styled.button`
+  font-size: 1rem;
+  color: white;
+  background-color: ${props => (props.disabled ? "#ccc" : "#de006f")};
+  padding: 1rem 1rem;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 3px;
 `;

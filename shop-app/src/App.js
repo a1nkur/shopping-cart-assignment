@@ -10,10 +10,28 @@ import Footer from "./Components/Footer/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CartPage from "./Pages/CartPage/CartPage";
+import { UserContext } from "./Contexts/UserContext/UserContext";
 
 function App() {
   const [cardData, setCardData] = useState(null);
   const [allProductsData, setAllProductsData] = useState(null);
+  const [registerInfo, setRegisterInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    cnfPassword: "",
+  });
+  const [isRegisterValid, setIsRegisterValid] = useState(false);
+
+  const registerDataOnChange = e => {
+    setRegisterInfo(prevState => {
+      return {
+        ...prevState,
+        [e.target.id]: e.target.value,
+      };
+    });
+  };
 
   useEffect(() => {
     axios.get(`/server/categories/index.get.json`).then(data => {
@@ -27,28 +45,51 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setIsRegisterValid(
+        registerInfo.firstName.length > 0 &&
+          registerInfo.lastName.length > 0 &&
+          registerInfo.email.includes("@") &&
+          registerInfo.password.length >= 5 &&
+          registerInfo.cnfPassword.length >= 5 &&
+          registerInfo.password === registerInfo.cnfPassword
+      );
+    }, 500);
+
+    return () => clearTimeout(identifier);
+  }, [registerInfo]);
+
   return (
     <AppContainer>
       <GlobalStyle />
-      <Navbar />
-      <Switch>
-        <Route path="/" exact>
-          <HomePage cardData={cardData} />
-        </Route>
-        <Route path="/products/category/:id" exact>
-          <ProductsPage cardData={cardData} allProductsData={allProductsData} />
-        </Route>
-        <Route path="/signin" exact>
-          <SigninPage />
-        </Route>
-        <Route path="/register" exact>
-          <RegisterPage />
-        </Route>
-        <Route path="/cart" exact>
-          <CartPage />
-        </Route>
-        <Route path="*">{/* <RegisterPage /> */}</Route>
-      </Switch>
+      <UserContext.Provider value={"asdasd"}>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact>
+            <HomePage cardData={cardData} />
+          </Route>
+          <Route path="/products/category/:id" exact>
+            <ProductsPage cardData={cardData} allProductsData={allProductsData} />
+          </Route>
+          <Route path="/signin" exact>
+            <SigninPage />
+          </Route>
+          <Route path="/register" exact>
+            <RegisterPage
+              registerInfo={registerInfo}
+              setRegisterInfo={setRegisterInfo}
+              registerDataOnChange={registerDataOnChange}
+              isRegisterValid={isRegisterValid}
+            />
+          </Route>
+          <Route path="/cart" exact>
+            <CartPage />
+          </Route>
+          <Route path="*">{/* <RegisterPage /> */}</Route>
+        </Switch>
+      </UserContext.Provider>
+
       <Footer />
     </AppContainer>
   );
