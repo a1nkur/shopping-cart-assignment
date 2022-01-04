@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const HomePageCard = ({ image, title, subTitle, key, index }) => {
+const HomePageCard = ({ image, title, subTitle, key, index, id }) => {
   return (
     <Container index={index}>
       <div className="left" key={key}>
@@ -11,7 +12,10 @@ const HomePageCard = ({ image, title, subTitle, key, index }) => {
       <div className="right">
         <h2>{title}</h2>
         <h4>{subTitle}</h4>
-        <button>Explore {title}</button>
+        <Link to={`/products/category/${id}`}>
+          {/* <button>Explore {title}</button> */}
+          Explore {title}
+        </Link>
       </div>
     </Container>
   );
@@ -57,7 +61,7 @@ const Container = styled.section`
       font-weight: 300;
     }
 
-    button {
+    a {
       padding: 0.7rem;
       width: 40%;
       border: none;

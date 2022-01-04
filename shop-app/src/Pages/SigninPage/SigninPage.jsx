@@ -3,7 +3,29 @@ import styled from "styled-components";
 const SigninPage = () => {
   return (
     <Container>
-      <div className="inner__container"></div>
+      <div className="inner__container">
+        <div className="inner__container__left">
+          <div className="left__container">
+            <h2>Login</h2>
+            <h4>Get access to your Orders,Wishlist and Recommendations</h4>
+          </div>
+        </div>
+        <div className="inner__container__right">
+          <div className="right__container">
+            <form>
+              <div className="inner__container__right__email">
+                <label for="email"> Email</label>
+                <input id="email" type="email" placeholder="johndoe@xyz.com" required />
+              </div>
+              <div className="inner__container__right__password">
+                <label for="password"> Password </label>
+                <input id="password" type="password" placeholder="***********" required />
+              </div>
+              <button className="btn__login"> Login </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </Container>
   );
 };
@@ -13,17 +35,82 @@ export default SigninPage;
 /* ---------------------------- STYLED COMPONENTS --------------------------- */
 
 const Container = styled.div`
-  min-height: 70vh;
+  min-height: 85vh;
   max-width: 80vw;
   padding: 2rem 0;
   margin: 0 auto;
 
-  border: 1px solid red;
-
   .inner__container {
     max-width: 60vw;
     margin: 0 auto;
-    border: 1px solid red;
+
     min-height: 30rem;
+    display: flex;
+
+    .inner__container__left {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .left__container {
+        h2 {
+          font-size: 3rem;
+          padding-bottom: 1rem;
+        }
+      }
+    }
+    .inner__container__right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .right__container form {
+        display: flex;
+        gap: 1rem;
+        height: 20rem;
+        flex-direction: column;
+        width: 25rem;
+        .btn__login {
+          font-size: 1rem;
+          color: white;
+          background-color: #de006f;
+          padding: 1rem 1rem;
+          border: 0;
+          width: 100%;
+          cursor: pointer;
+          border-radius: 3px;
+        }
+        .inner__container__right__email {
+          display: flex;
+          flex-direction: column;
+
+          input {
+            padding: 0.6rem 0;
+            font-size: 1rem;
+            border: none;
+
+            &:focus {
+              outline: none;
+              border-bottom: 2px solid lightblue;
+            }
+          }
+        }
+        .inner__container__right__password {
+          display: flex;
+          flex-direction: column;
+          input {
+            padding: 0.6rem 0;
+            font-size: 1rem;
+            border: none;
+            &:focus {
+              outline: none;
+              border-bottom: 2px solid lightblue;
+            }
+          }
+        }
+      }
+    }
   }
 `;

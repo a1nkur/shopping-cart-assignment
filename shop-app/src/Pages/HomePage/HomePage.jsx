@@ -24,6 +24,7 @@ const HomePage = ({ cardData }) => {
             title={item?.name}
             subTitle={item?.description}
             key={item?.key}
+            id={item?.id}
           />
         ))}
     </Container>

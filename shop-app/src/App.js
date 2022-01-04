@@ -9,6 +9,7 @@ import ProductsPage from "./Pages/ProductsPage/ProductsPage";
 import Footer from "./Components/Footer/Footer";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CartPage from "./Pages/CartPage/CartPage";
 
 function App() {
   const [cardData, setCardData] = useState(null);
@@ -42,6 +43,9 @@ function App() {
         </Route>
         <Route path="/register" exact>
           <RegisterPage />
+        </Route>
+        <Route path="/cart" exact>
+          <CartPage />
         </Route>
         <Route path="*">{/* <RegisterPage /> */}</Route>
       </Switch>
