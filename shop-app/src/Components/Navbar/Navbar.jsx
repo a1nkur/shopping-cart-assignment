@@ -18,8 +18,8 @@ const Navbar = () => {
           <div className="cart__box">
             <div className="box">
               <div className="links">
-                <Link to="/"> Signin</Link>
-                <Link to="/products"> Register</Link>
+                <Link to="/signin"> Signin</Link>
+                <Link to="/register"> Register</Link>
               </div>
               <div className="cart__svg">
                 <img src="/static/images/cart.svg" alt="" />
