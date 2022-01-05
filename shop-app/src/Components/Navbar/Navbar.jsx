@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext/UserContext";
 
-const Navbar = () => {
+const Navbar = ({ handleSignout }) => {
+  // const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+  console.log(isLoggedIn, "isLoggedIn");
+
   return (
     <NavContainer>
       <div className="container">
@@ -18,8 +25,15 @@ const Navbar = () => {
           <div className="cart__box">
             <div className="box">
               <div className="links">
-                <Link to="/signin"> Signin</Link>
-                <Link to="/register"> Register</Link>
+                {!isLoggedIn ? (
+                  <Link to="/signin"> Signin </Link>
+                ) : (
+                  <Link to="/signin" onClick={handleSignout}>
+                    {" "}
+                    Signout
+                  </Link>
+                )}
+                <Link to="/register"> Register </Link>
               </div>
               <div className="cart__svg">
                 <img src="/static/images/cart.svg" alt="" />

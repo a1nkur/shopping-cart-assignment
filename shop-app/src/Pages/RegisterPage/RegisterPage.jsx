@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-const RegisterPage = ({ registerInfo, setRegisterInfo, registerDataOnChange, isRegisterValid }) => {
+const RegisterPage = ({
+  registerInfo,
+  setRegisterInfo,
+  registerDataOnChange,
+  isRegisterValid,
+  handleAccountCreation,
+}) => {
   return (
     <Container>
       <div className="inner__container">
@@ -12,7 +18,7 @@ const RegisterPage = ({ registerInfo, setRegisterInfo, registerDataOnChange, isR
         </div>
         <div className="inner__container__right">
           <div className="right__container">
-            <form>
+            <form onSubmit={handleAccountCreation}>
               <div className="inner__container__right__firstName">
                 <label for="firstName">First Name</label>
                 <input id="firstName" type="text" placeholder="John" required onChange={registerDataOnChange} />
@@ -45,7 +51,9 @@ const RegisterPage = ({ registerInfo, setRegisterInfo, registerDataOnChange, isR
                   onChange={registerDataOnChange}
                 />
               </div>
-              <RegisterButton disabled={!isRegisterValid}>Register</RegisterButton>
+              <RegisterButton disabled={!isRegisterValid} type="submit">
+                Register
+              </RegisterButton>
             </form>
           </div>
         </div>

@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
-const SigninPage = () => {
+const SigninPage = ({ loginDataOnChange, handleLogin, setIsSignInfoValid, signinInfo, isSignInfoValid }) => {
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      setIsSignInfoValid(signinInfo.email.includes("@") && signinInfo.password.length >= 5);
+    }, 500);
+
+    return () => clearTimeout(identifier);
+  }, [signinInfo]);
+
   return (
     <Container>
       <div className="inner__container">
@@ -12,16 +21,19 @@ const SigninPage = () => {
         </div>
         <div className="inner__container__right">
           <div className="right__container">
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="inner__container__right__email">
                 <label for="email"> Email</label>
-                <input id="email" type="email" placeholder="johndoe@xyz.com" required />
+                <input id="email" type="email" placeholder="johndoe@xyz.com" required onChange={loginDataOnChange} />
               </div>
               <div className="inner__container__right__password">
                 <label for="password"> Password </label>
-                <input id="password" type="password" placeholder="***********" required />
+                <input id="password" type="password" placeholder="***********" required onChange={loginDataOnChange} />
               </div>
-              <button className="btn__login"> Login </button>
+              <SigninButton disabled={!isSignInfoValid} type="submit">
+                {" "}
+                Signin{" "}
+              </SigninButton>
             </form>
           </div>
         </div>
@@ -113,4 +125,15 @@ const Container = styled.div`
       }
     }
   }
+`;
+
+const SigninButton = styled.button`
+  font-size: 1rem;
+  color: white;
+  background-color: ${props => (props.disabled ? "#ccc" : "#de006f")};
+  padding: 1rem 1rem;
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 3px;
 `;
