@@ -4,10 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../Contexts/UserContext/UserContext";
 
 const Navbar = ({ handleSignout }) => {
-  // const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  console.log(isLoggedIn, "isLoggedIn");
 
   return (
     <NavContainer>

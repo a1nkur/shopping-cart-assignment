@@ -57,8 +57,8 @@ function App() {
   const handleAccountCreation = e => {
     e.preventDefault();
 
-    // localStorage.setItem("userInfo", { info :registerInfo, isLoggedIn : true });
-    localStorage.setItem("userInfo", JSON.stringify({ info: registerInfo, isLoggedIn: true }));
+    localStorage.setItem("userInfo", JSON.stringify({ info: registerInfo, userCart: [] }));
+
     setIsLoggedIn(true);
     setRegisterInfo({
       firstName: "",
@@ -68,18 +68,14 @@ function App() {
       cnfPassword: "",
     });
     history.push("/");
-
-    // localStorage.setItem("userInfo", "1");
   };
 
   const handleLogin = e => {
     e.preventDefault();
 
-    console.log("operated");
     const localStorageData = JSON.parse(localStorage.getItem("userInfo"));
 
     if (localStorageData.info.password === signinInfo.password) {
-      console.log("operated 2");
       setIsLoggedIn(true);
       setSigninInfo({
         email: "",
@@ -121,8 +117,6 @@ function App() {
 
     return () => clearTimeout(identifier);
   }, [registerInfo]);
-
-  
 
   return (
     <AppContainer>

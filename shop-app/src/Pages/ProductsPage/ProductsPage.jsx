@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import isAuth from "../../Utility/isAuth";
+import { UserContext } from "../../Contexts/UserContext/UserContext";
+import { useHistory } from "react-router";
 
 const ProductsPage = ({ cardData, allProductsData }) => {
   const { id } = useParams();
+  const history = useHistory();
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   const [productsOnDisplay, setProductsOnDisplay] = useState(
     allProductsData?.filter(item => item?.category.toString() === id.toString())
@@ -13,6 +18,30 @@ const ProductsPage = ({ cardData, allProductsData }) => {
   useEffect(() => {
     setProductsOnDisplay(allProductsData?.filter(item => item?.category.toString() === id.toString()));
   }, [id, allProductsData]);
+
+  const handleBuyNow = item => {
+    if (isAuth(isLoggedIn)) {
+      const localStorageData = JSON.parse(localStorage.getItem("userInfo"));
+
+      if (localStorageData.userCart.length > 0) {
+        // check if item already exists in the cart, increase the quantity
+        localStorageData.userCart.map((ele, index) => {
+          if (ele.id === item.id) {
+            localStorageData.userCart.splice(index, 1, { ...ele, qty: ele.qty + 1 });
+            // localStorageData.userCart[index]({ ...ele, qty: ele.qty + 1 });
+          } else {
+            localStorageData.userCart.push({ ...item, qty: 1 });
+          }
+        });
+      } else {
+        localStorageData.userCart.push({ ...item, qty: 1 });
+      }
+
+      localStorage.setItem("userInfo", JSON.stringify(localStorageData));
+    } else {
+      history.push("/signin");
+    }
+  };
 
   return (
     <Container>
@@ -41,7 +70,7 @@ const ProductsPage = ({ cardData, allProductsData }) => {
             </div>
             <div className="price">
               <span>MRP Rs. {item?.price}</span>
-              <button>Buy Now</button>
+              <button onClick={() => handleBuyNow(item)}>Buy Now</button>
             </div>
           </ProductCard>
         ))}
