@@ -2,45 +2,50 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../Contexts/UserContext/UserContext";
+import ShopContext from "../../Contexts/CartContext/ShopContext";
 
 const Navbar = ({ handleSignout }) => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
 
   return (
-    <NavContainer>
-      <div className="container">
-        <div className="logo">
-          <div className="img__container">
-            <img src="/static/images/logo_2x.png" alt="" />
-          </div>
-        </div>
-        <div className="right__container">
-          <div className="nav__links">
-            <Link to="/"> Home</Link>
-            <Link to="/products/category/5b675e5e5936635728f9fc30"> Products</Link>
-          </div>
-          <div className="cart__box">
-            <div className="box">
-              <div className="links">
-                {!isLoggedIn ? (
-                  <Link to="/signin"> Signin </Link>
-                ) : (
-                  <Link to="/signin" onClick={handleSignout}>
-                    {" "}
-                    Signout
-                  </Link>
-                )}
-                <Link to="/register"> Register </Link>
+    <ShopContext.Consumer>
+      {context => (
+        <NavContainer>
+          <div className="container">
+            <div className="logo">
+              <div className="img__container">
+                <img src="/static/images/logo_2x.png" alt="" />
               </div>
-              <div className="cart__svg">
-                <img src="/static/images/cart.svg" alt="" />
-                <span>0 items</span>
+            </div>
+            <div className="right__container">
+              <div className="nav__links">
+                <Link to="/"> Home</Link>
+                <Link to="/products/category/5b675e5e5936635728f9fc30"> Products</Link>
+              </div>
+              <div className="cart__box">
+                <div className="box">
+                  <div className="links">
+                    {!isLoggedIn ? (
+                      <Link to="/signin"> Signin </Link>
+                    ) : (
+                      <Link to="/signin" onClick={handleSignout}>
+                        {" "}
+                        Signout
+                      </Link>
+                    )}
+                    <Link to="/register"> Register </Link>
+                  </div>
+                  <div className="cart__svg">
+                    <img src="/static/images/cart.svg" alt="" />
+                    <span>{context.cart.length} items</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </NavContainer>
+        </NavContainer>
+      )}
+    </ShopContext.Consumer>
   );
 };
 
