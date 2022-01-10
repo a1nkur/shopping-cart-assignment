@@ -1,28 +1,33 @@
 import styled from "styled-components";
+import ShopContext from "../../Contexts/CartContext/ShopContext";
 
-const CartItem = () => {
+const CartItem = ({ ele, index }) => {
   return (
-    <Container>
-      <div className="left">
-        <div className="img__container">
-          <img src="" alt="" />
-        </div>
-        <div className="desc">
-          <div className="title">
-            <h5>title</h5>
+    <ShopContext.Consumer>
+      {context => (
+        <Container key={index}>
+          <div className="left">
+            <div className="img__container">
+              <img src={ele.imageURL} alt="" />
+            </div>
+            <div className="desc">
+              <div className="title">
+                <h5>{ele.title}</h5>
+              </div>
+              <div className="fx">
+                <button onClick={context.removeProductFromCart.bind(this, ele.id)}>-</button>
+                <span>{ele.quantity}</span>
+                <button onClick={context.addProductToCart.bind(this, ele)}>+</button>
+                <span>X Rs. {ele.price}</span>
+              </div>
+            </div>
           </div>
-          <div className="fx">
-            <button>-</button>
-            <span>{1}</span>
-            <button>+</button>
-            <span>X Rs.137</span>
+          <div className="right">
+            <span>Rs. {ele.quantity * ele.price}</span>
           </div>
-        </div>
-      </div>
-      <div className="right">
-        <span>Rs. {137}</span>
-      </div>
-    </Container>
+        </Container>
+      )}
+    </ShopContext.Consumer>
   );
 };
 

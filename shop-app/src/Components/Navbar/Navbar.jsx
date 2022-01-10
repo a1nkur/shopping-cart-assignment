@@ -35,10 +35,10 @@ const Navbar = ({ handleSignout }) => {
                     )}
                     <Link to="/register"> Register </Link>
                   </div>
-                  <div className="cart__svg">
+                  <Link to="/cart" className="cart__svg">
                     <img src="/static/images/cart.svg" alt="" />
                     <span>{context.cart.length} items</span>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@ const NavContainer = styled.nav`
             justify-content: space-between;
           }
 
-          .cart__svg {
+          a.cart__svg {
             height: 2rem;
             width: 100%;
             display: flex;

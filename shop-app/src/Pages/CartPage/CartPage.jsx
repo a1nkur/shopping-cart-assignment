@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import CartItem from "../../Components/CartItem/CartItem";
+import ShopContext from "../../Contexts/CartContext/ShopContext";
 
 const CartPage = () => {
   return (
-    <Container>
-      <div className="title">
-        <h3> My Cart ({0} item)</h3>
-      </div>
-      <CartItems>
-        <CartItem />
-        <CartItem />
-        <CartItem />
-      </CartItems>
-    </Container>
+    <ShopContext.Consumer>
+      {context => (
+        <Container>
+          <div className="title">
+            <h3> My Cart ({context.cart.length} item)</h3>
+          </div>
+          <CartItems>
+            {context.cart.map((ele, index) => (
+              <CartItem ele={ele} index={index} />
+            ))}
+          </CartItems>
+        </Container>
+      )}
+    </ShopContext.Consumer>
   );
 };
 
