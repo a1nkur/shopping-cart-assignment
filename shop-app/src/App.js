@@ -12,6 +12,7 @@ import axios from "axios";
 import CartPage from "./Pages/CartPage/CartPage";
 import { UserContext } from "./Contexts/UserContext/UserContext";
 import { useHistory } from "react-router";
+import { PrivateRoute } from "./Utility/PrivateRouter";
 
 function App() {
   const history = useHistory();
@@ -147,9 +148,11 @@ function App() {
             handleAccountCreation={handleAccountCreation}
           />
         </Route>
-        <Route path="/cart" exact>
+        {/* <Route path="/cart" exact>
           <CartPage />
-        </Route>
+        </Route> */}
+        <PrivateRoute exact="exact" path="/cart" component={CartPage} />
+
         <Route path="*">{/* <RegisterPage /> */}</Route>
       </Switch>
 

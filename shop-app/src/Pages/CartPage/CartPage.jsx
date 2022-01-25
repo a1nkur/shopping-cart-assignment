@@ -6,16 +6,32 @@ const CartPage = () => {
   return (
     <ShopContext.Consumer>
       {context => (
-        <Container>
-          <div className="title">
-            <h3> My Cart ({context.cart.length} item)</h3>
-          </div>
-          <CartItems>
-            {context.cart.map((ele, index) => (
-              <CartItem ele={ele} index={index} />
-            ))}
-          </CartItems>
-        </Container>
+        <>
+          {context.cart.length > 0 ? (
+            <Container>
+              <div className="title">
+                <h3> My Cart ({context.cart.length} item)</h3>
+              </div>
+              <CartItems>
+                {context.cart.map((ele, index) => (
+                  <CartItem ele={ele} index={index} />
+                ))}
+                <div className="checkout-btn">
+                  <button>asdad</button>
+                </div>
+              </CartItems>
+            </Container>
+          ) : (
+            <Container>
+              <CartItems>
+                <NoItem>
+                  <h1>No items in your cart.</h1>
+                  <h2>Your favourite items are just a click away.</h2>
+                </NoItem>
+              </CartItems>
+            </Container>
+          )}
+        </>
       )}
     </ShopContext.Consumer>
   );
@@ -45,4 +61,9 @@ const Container = styled.div`
 const CartItems = styled.section`
   background-color: #eee;
   min-height: 5rem;
+`;
+
+const NoItem = styled.section`
+  text-align: center;
+  margin-top: 10rem;
 `;

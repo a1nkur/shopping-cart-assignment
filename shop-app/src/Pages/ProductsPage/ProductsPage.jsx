@@ -22,96 +22,17 @@ const ProductsPage = ({ cardData, allProductsData }) => {
     setProductsOnDisplay(allProductsData?.filter(item => item?.category.toString() === id.toString()));
   }, [id, allProductsData]);
 
-  // const handleBuyNow = item => {
-  //   const localStorageData = JSON.parse(localStorage.getItem("userInfo"));
-  //   let newlocs = [...localStorageData.UserCart];
+ 
 
-  //   if (isAuth(isLoggedIn)) {
-
-  //     if (localStorageData.userCart.length > 0) {
-  //       // check if item already exists in the cart, increase the quantity
-  //       newlocs = localStorageData.userCart.map((ele, index) => {
-  //         // [{bread}, {}, {}, {}]
-  //         if (ele.id !== item.id) {
-  //           return { ...item, qty: 1 };
-  //         } else {
-  //           return { ...ele, qty: ele.qty + 1 };
-  //         }
-  //       });
-
-  //       localStorage.setItem("userInfo", JSON.stringify({ ...localStorageData, userCart: newlocs }));
-  //     } else {
-  //       localStorageData.userCart.push({ ...item, qty: 1 });
-  //       localStorage.setItem("userInfo", JSON.stringify({ ...localStorageData }));
-  //     }
-  //   } else {
-  //     history.push("/signin");
-  //   }
-  // };
-
-  // const handleBuyNow = item => {
-  //   // Check if authenticated
-  //   if (isAuth(isLoggedIn)) {
-  //     if (cart.length > 0) {
-  //       cart.map(ele => {
-  //         if (ele.id != item.id) {
-  //           setCart([...cart, { ...item, qty: 1 }]);
-  //         } else {
-  //           setCart([...cart, { ...item, qty: 1 }]);
-  //         }
-  //       });
-  //     } else {
-  //       setCart(prevState => prevState.push({ ...item, qty: 1 }));
-  //       localStorage.setItem(
-  //         "userInfo",
-  //         JSON.stringify({ ...JSON.parse(localStorage.getItem("userInfo")), userCart: cart })
-  //       );
-  //     }
-  //   } else {
-  //     history.push("/signin");
-  //   }
-  // };
-
-  // const handleBuyNow = item => {
-  //   let temp = cart;
-
-  //   if (isAuth(isLoggedIn)) {
-  //     if (temp.length > 0) {
-  //       let count = 0;
-  //       const newArr = temp.map(ele => {
-  //         if (ele.id === item.id) {
-  //           return { ...ele, qty: ele.qty + 1 };
-  //         } else {
-  //           count++;
-  //           return ele;
-  //         }
-  //       });
-
-  //       if (count === temp.length) {
-  //         console.log("i ran");
-  //         temp.push({ ...item, qty: 1 });
-  //         console.log(temp);
-  //         setCart(temp);
-  //       } else {
-  //         setCart(newArr);
-  //       }
-
-  //       count = 0;
-  //     } else {
-  //       setCart([{ ...item, qty: 1 }]);
-  //     }
-  //   } else {
-  //     history.push("/signin");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const lsData = JSON.parse(localStorage.getItem("userInfo"));
-
-  //   localStorage.setItem("userInfo", JSON.stringify({ ...lsData, userCart: cart }));
-  // }, [cart]);
-
-  const handleBuyNow = () => {};
+  const handleBuyNow = (context, item) => {
+    console.log(context, "context");
+    if (isAuth(isLoggedIn)) {
+      // context.addProductToCart.bind(this, item);
+      context.addProductToCart(item);
+    } else {
+      history.push("/signin");
+    }
+  };
 
   return (
     <ShopContext.Consumer>
@@ -142,7 +63,8 @@ const ProductsPage = ({ cardData, allProductsData }) => {
                 </div>
                 <div className="price">
                   <span>MRP Rs. {item?.price}</span>
-                  <button onClick={context.addProductToCart.bind(this, item)}>Buy Now</button>
+                  {/* <button onClick={context.addProductToCart.bind(this, item)}>Buy Now</button> */}
+                  <button onClick={() => handleBuyNow(context, item)}>Buy Now</button>
                 </div>
               </ProductCard>
             ))}
