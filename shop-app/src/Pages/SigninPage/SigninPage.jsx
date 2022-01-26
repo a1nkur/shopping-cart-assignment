@@ -183,13 +183,4 @@ const SigninButton = styled.button`
   }
 `;
 
-/* MEDIA QUERY - TABLET*/
 
-// @media (min-width: 481px) and (max-width: 768px) {
-
-// }
-
-// /* MEDIA QUERY - MOBILE*/
-// @media (max-width: 480px) {
-
-// }

@@ -22,8 +22,6 @@ const ProductsPage = ({ cardData, allProductsData }) => {
     setProductsOnDisplay(allProductsData?.filter(item => item?.category.toString() === id.toString()));
   }, [id, allProductsData]);
 
- 
-
   const handleBuyNow = (context, item) => {
     console.log(context, "context");
     if (isAuth(isLoggedIn)) {
@@ -64,7 +62,12 @@ const ProductsPage = ({ cardData, allProductsData }) => {
                 <div className="price">
                   <span>MRP Rs. {item?.price}</span>
                   {/* <button onClick={context.addProductToCart.bind(this, item)}>Buy Now</button> */}
-                  <button onClick={() => handleBuyNow(context, item)}>Buy Now</button>
+                  <button className="desktop" onClick={() => handleBuyNow(context, item)}>
+                    Buy Now
+                  </button>
+                  <button className="tabmob" onClick={() => handleBuyNow(context, item)}>
+                    Buy Now @ Rs {item?.price}{" "}
+                  </button>
                 </div>
               </ProductCard>
             ))}
@@ -87,11 +90,33 @@ const Container = styled.div`
 
   display: flex;
   gap: 1rem;
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    max-width: 100vw;
+    margin: 0;
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    max-width: 100vw;
+    margin: 0;
+    gap: 0.5rem;
+  }
 `;
 
 const LeftPanel = styled.section`
   background-color: #ddd;
   flex: 1;
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: 0.7rem;
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const RighPanel = styled.section`
@@ -101,6 +126,18 @@ const RighPanel = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 1rem;
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    font-size: 0.7rem;
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    font-size: 0.7rem;
+  }
 `;
 
 const ProductCategory = styled.section`
@@ -163,6 +200,52 @@ const ProductCard = styled.article`
       background-color: #de006f;
       color: #fff;
       cursor: pointer;
+    }
+
+    button.tabmob {
+      display: none;
+    }
+  }
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    .price {
+      span {
+        display: none;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      button.tabmob {
+        display: block;
+      }
+
+      button.desktop {
+        display: none;
+      }
+    }
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    .price {
+      span {
+        display: none;
+      }
+
+      button {
+        width: 100%;
+      }
+
+      button.tabmob {
+        display: block;
+      }
+
+      button.desktop {
+        display: none;
+      }
     }
   }
 `;
