@@ -61,18 +61,15 @@ export const GlobalStyle = createGlobalStyle`
     
     .swiper-button-prev, .swiper-button-next {
         color: #000;
-        /* margin:  0 4.2rem; */
     }
     .swiper-pagination-bullet {
         height: 0.8rem;
         width: 0.8rem;
         opacity: 0.6;
-        /* background-color: rgba(250,250,250, 0.6); */
         background-color: #b4b4b4;
     }
     
     .swiper-pagination-bullet-active {
-        /* background-color: rgb(250,250,250); */
         background-color: gray;
     }
     

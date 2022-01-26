@@ -23,9 +23,7 @@ const ProductsPage = ({ cardData, allProductsData }) => {
   }, [id, allProductsData]);
 
   const handleBuyNow = (context, item) => {
-    console.log(context, "context");
     if (isAuth(isLoggedIn)) {
-      // context.addProductToCart.bind(this, item);
       context.addProductToCart(item);
     } else {
       history.push("/signin");

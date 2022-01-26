@@ -5,7 +5,6 @@ import ShopContext from "../../Contexts/CartContext/ShopContext";
 
 const CartPage = () => {
   const { cart } = useContext(ShopContext);
-  console.log(cart, "CONTTTT");
 
   const calcCartTotal = () => {
     let total = 0;
@@ -14,7 +13,6 @@ const CartPage = () => {
       total += total + ele.price * ele.quantity;
     });
 
-    console.log(total, "totaltotaltotaltotal");
     return total;
   };
 
