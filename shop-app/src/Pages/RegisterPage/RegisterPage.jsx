@@ -71,6 +71,7 @@ const Container = styled.div`
   max-width: 80vw;
   padding: 2rem 0;
   margin: 0 auto;
+  margin-bottom: 5rem;
 
   .inner__container {
     max-width: 60vw;
@@ -92,6 +93,7 @@ const Container = styled.div`
         }
       }
     }
+
     .inner__container__right {
       flex: 1;
       display: flex;
@@ -132,6 +134,7 @@ const Container = styled.div`
             }
           }
         }
+
         .inner__container__right__password {
           display: flex;
           flex-direction: column;
@@ -142,6 +145,40 @@ const Container = styled.div`
             &:focus {
               outline: none;
               border-bottom: 2px solid lightblue;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* MEDIA QUERY - TABLET*/
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .inner__container {
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 100vw;
+      margin: 0;
+    }
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    .inner__container {
+      max-width: 100vw;
+      margin: 0;
+      flex-direction: column;
+      gap: 1rem;
+
+      .inner__container__right {
+        .right__container form {
+          width: 100%;
+          .inner__container__right__email,
+          .inner__container__right__password {
+            width: 100%;
+            input {
+              width: 100%;
             }
           }
         }

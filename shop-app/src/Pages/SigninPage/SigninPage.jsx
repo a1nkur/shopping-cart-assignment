@@ -84,6 +84,7 @@ const Container = styled.div`
         height: 20rem;
         flex-direction: column;
         width: 25rem;
+
         .btn__login {
           font-size: 1rem;
           color: white;
@@ -102,6 +103,7 @@ const Container = styled.div`
             padding: 0.6rem 0;
             font-size: 1rem;
             border: none;
+            width: 100%;
 
             &:focus {
               outline: none;
@@ -125,6 +127,40 @@ const Container = styled.div`
       }
     }
   }
+
+  /* MEDIA QUERY - TABLET*/
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .inner__container {
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 100vw;
+      margin: 0;
+    }
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    .inner__container {
+      max-width: 100vw;
+      margin: 0;
+      flex-direction: column;
+      gap: 1rem;
+
+      .inner__container__right {
+        .right__container form {
+          width: 100%;
+          .inner__container__right__email,
+          .inner__container__right__password {
+            width: 100%;
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 `;
 
 const SigninButton = styled.button`
@@ -136,4 +172,24 @@ const SigninButton = styled.button`
   width: 100%;
   cursor: pointer;
   border-radius: 3px;
+
+  /* MEDIA QUERY - TABLET*/
+
+  @media (min-width: 481px) and (max-width: 768px) {
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+  }
 `;
+
+/* MEDIA QUERY - TABLET*/
+
+// @media (min-width: 481px) and (max-width: 768px) {
+
+// }
+
+// /* MEDIA QUERY - MOBILE*/
+// @media (max-width: 480px) {
+
+// }
