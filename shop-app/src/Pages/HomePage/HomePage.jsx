@@ -40,4 +40,14 @@ const Container = styled.div`
   max-width: 80vw;
   padding: 0.5rem 0;
   margin: 0 auto;
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    margin: 0;
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    margin: 0;
+  } ;
 `;

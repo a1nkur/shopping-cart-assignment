@@ -61,6 +61,18 @@ const Container = styled.div`
 const CartItems = styled.section`
   background-color: #eee;
   min-height: 5rem;
+
+  .checkout-btn {
+    height: 3rem;
+
+    button {
+      height: 100%;
+      width: 100%;
+      background-color: #de006f;
+      border: none;
+      color: #fff;
+    }
+  }
 `;
 
 const NoItem = styled.section`

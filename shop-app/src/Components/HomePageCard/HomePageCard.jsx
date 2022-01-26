@@ -82,4 +82,38 @@ const Container = styled.section`
       object-fit: cover;
     }
   }
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 100vw;
+
+    font-size: 0.8rem;
+
+    .right a {
+      width: 70%;
+    }
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    width: 100vw;
+    font-size: 0.8rem;
+
+    .left .image__container {
+      height: 90%;
+      width: 90%;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .right {
+      a {
+        width: 69%;
+      }
+    }
+  }
 `;

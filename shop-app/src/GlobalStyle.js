@@ -14,7 +14,16 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Work Sans', sans-serif;
         /* background-color: var(--white-shade-2); */
         scroll-behavior: smooth;
+        height: 100%;
+        width: 100%;
         /* overflow-x: hidden; */
+           /* Hide scrollbar for Chrome, Safari and Opera */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
     }
     :root {
         --blue-shade-1 : #00B2FF;
@@ -67,6 +76,21 @@ export const GlobalStyle = createGlobalStyle`
         background-color: gray;
     }
     
-  
+
+   /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+      .swiper-container{
+          width: 100vw;
+      }
+
+  } ;
+
+   /* MEDIA QUERY - MOBILE*/
+    @media screen and (max-width: 480px) {
+    .swiper-container{
+            width: 100vw;
+        }
+    }
+
 
 `;

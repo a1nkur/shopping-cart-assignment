@@ -37,7 +37,7 @@ const Navbar = ({ handleSignout }) => {
                   </div>
                   <Link to="/cart" className="cart__svg">
                     <img src="/static/images/cart.svg" alt="" />
-                    <span>{context.cart.length} items</span>
+                    <span>{isLoggedIn ? context.cart.length : 0} items</span>
                   </Link>
                 </div>
               </div>
@@ -137,6 +137,85 @@ const NavContainer = styled.nav`
           .links {
             flex: 1;
           }
+        }
+      }
+    }
+  }
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    .container {
+      max-width: 100vw;
+
+      .logo {
+        flex: 1;
+        align-self: flex-end;
+
+        .img__container {
+          height: 10vh;
+          width: 15rem;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    width: 100vw;
+    font-size: 0.7rem;
+
+    .container {
+      margin: 0;
+      gap: 0;
+      max-width: 100%;
+
+      .logo {
+        flex: 3;
+        align-self: flex-end;
+        height: 100%;
+        /* width: 10rem; */
+
+        .img__container {
+          height: 100%;
+          width: 100%;
+
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+
+      .right__container {
+        .nav__links {
+          gap: 0.5rem;
+        }
+      }
+
+      a.cart__svg {
+        height: 2rem;
+        width: 100%;
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+
+        span {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+        }
+
+        img {
+          height: 2rem;
+          width: 2rem;
+          object-fit: contain;
         }
       }
     }

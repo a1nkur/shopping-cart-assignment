@@ -63,4 +63,14 @@ const Container = styled.section`
       object-fit: cover;
     }
   }
+
+  /* MEDIA QUERY - TABLET*/
+  @media (min-width: 481px) and (max-width: 768px) {
+    width: 100%;
+  }
+
+  /* MEDIA QUERY - MOBILE*/
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
